@@ -3,19 +3,21 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const { PORT, MONGO_URL } = require('./config');
 const router = require('./routes/index');
 const { celebrateErrorHandler } = require('./middlewares/celebrate-errors-handler');
 
-const { PORT = 3000 } = process.env;
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
+mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
 });
 
+app.use(requestLogger);
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +31,7 @@ app.use((req, res, next) => {
 
 app.use('/', router);
 
+app.use(errorLogger);
 app.use(celebrateErrorHandler);
 
 app.use((err, req, res, next) => {
