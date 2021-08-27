@@ -25,7 +25,7 @@ const addMovie = (req, res, next) => {
   } = req.body;
   Movie.find({ movieId, owner: req.user._id })
     .then((addedMovie) => {
-      if (addedMovie) {
+      if (addedMovie.length !== 0) {
         return next(new Error('Фильм уже сохранен'));
       }
       return Movie.create({
