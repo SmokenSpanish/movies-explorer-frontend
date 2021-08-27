@@ -1,0 +1,33 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmokenSpanish/movies-explorer-api.git"
+  },
+  "keywords": [],
+  "author": "Maksim Basov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SmokenSpanish/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/SmokenSpanish/movies-explorer-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.2",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  }
+}
