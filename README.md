@@ -28,6 +28,6 @@
 
 ## Ссылки на проект:
 ##### Публичный IP-адрес сервера:
-* [`#`](http://#);
+* [`178.154.198.78`](http://178.154.198.78);
 ##### Backend:
-* [`#`](#);
+* [`https://api.movies.spanish.nomoredomains.rocks`](https://api.movies.spanish.nomoredomains.rocks);

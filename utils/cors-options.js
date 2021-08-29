@@ -1,9 +1,9 @@
 const corsOptions = {
   origin: [
-    'http://movies.Spanish.nomoredomains.monster',
-    'https://movies.Spanish.nomoredomains.monster',
-    'http://api.movies.Spanish.nomoredomains.monster',
-    'https://api.movies.Spanish.nomoredomains.monster',
+    'http://movies.spanish.nomoredomains.rocks',
+    'https://api.movies.spanish.nomoredomains.rocks',
+    'http://movies.spanish.nomoredomains.rocks',
+    'https://api.movies.spanish.nomoredomains.rocks',
     'http://localhost:3000',
     'http://localhost:3001',
   ],
