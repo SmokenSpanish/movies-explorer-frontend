@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
+const limiter = require('./utils/limiter');
 
 const corsOptions = require('./utils/cors-options');
 
@@ -25,16 +26,10 @@ mongoose.connect(MONGO_URL, {
 });
 
 app.use(requestLogger);
+app.use(limiter);
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use((req, res, next) => {
-  req.user = {
-    _id: '6128aabb1db769c66d7ad439',
-  };
-  next();
-});
 
 app.use('/', router);
 
