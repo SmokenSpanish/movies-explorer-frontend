@@ -125,12 +125,14 @@
     }
   }
   
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 510px) {
     .header {
-      max-width: 360px;
-      margin: 0 auto;
+      margin: 0 14px;
     }
+  }
 
+  @media screen and (max-width: 420px) {
+    
     .header__auth-element:first-of-type {
       margin-right: 14px;
     }

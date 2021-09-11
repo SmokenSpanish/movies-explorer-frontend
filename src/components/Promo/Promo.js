@@ -13,7 +13,7 @@ export default function Promo() {
       <div className="promo__navigation">
           <a className="promo__navigation-link" href='#about-project'>О проекте</a>
           <a className="promo__navigation-link" href='#techs'>Технологии</a>
-          <a className="promo__navigation-link" href='#profile'>Студент</a>
+          <a className="promo__navigation-link" href='#portfolio'>Студент</a>
         </div>
     </section>
   )

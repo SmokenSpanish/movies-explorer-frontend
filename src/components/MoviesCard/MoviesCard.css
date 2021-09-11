@@ -1,0 +1,119 @@
+.card {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .card__container {
+    display: flex;
+    flex-direction: column;
+    background-color: #222222;
+    position: relative;
+    margin: 0;
+    border-radius: 6px 6px;
+  }
+  
+  .card__link {
+    display: flex;
+    border-radius: 6px 6px 0 0;
+    text-decoration: none;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .card__image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+  }
+  
+  .card__caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 46px;
+    padding: 14px;
+    position: relative;
+  }
+  
+  .card__name {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #ffffff;
+    margin: 0;
+    height: min-content;
+    max-width: 250px;
+  }
+  
+  .card__duration {
+    font-size: 11px;
+    line-height: 13px;
+    color: #8b8b8b;
+    margin: 0;
+  }
+  
+  .card__button {
+    border: none;
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-image: url("../../images/heart.svg");
+    background-color: #222222;
+  }
+  
+  .card__container:hover .card__button {
+    cursor: pointer;
+  }
+  
+  .card__button_type_save {
+    background-image: url("../../images/heart-active.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  @media screen and (max-width: 1019px) {
+    .card__caption {
+      margin: 25px 0 0;
+      height: 33px;
+    }
+  }
+
+  @media screen and (width: 768px) {
+    .card__image {
+      height: 190px;
+    }
+  }
+  
+  @media screen and (max-width: 689px) {
+    .card__caption {
+      margin: 16px 0 0;
+      height: 44px;
+    }
+  
+    .card__name {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  
+    .card__duration {
+      font-size: 12px;
+      line-height: 15px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+  .card {
+    height: 228px;
+  }
+
+  .card__duration {
+    font-size: 10px;
+    line-height: 12px;
+  }
+} 
