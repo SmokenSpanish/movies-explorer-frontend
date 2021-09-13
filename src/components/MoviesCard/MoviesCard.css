@@ -64,16 +64,18 @@
     height: 30px;
     background-image: url("../../images/heart.svg");
     background-color: #222222;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   
   .card__container:hover .card__button {
     cursor: pointer;
   }
   
-  .card__button_type_save {
+  .card__button_type_active {
     background-image: url("../../images/heart-active.svg");
-    background-position: center;
-    background-repeat: no-repeat;
+    /* background-position: center;
+    background-repeat: no-repeat; */
   }
   
   @media screen and (max-width: 1019px) {

@@ -1,10 +1,15 @@
 import React from 'react';
+import { useState } from 'react';
 import './MoviesCard.css';
 import image from '../../images/pic__COLOR_pic.jpg'
 
 export default function MoviesCard(props) {
-  const { isSavedMoviesList, isSaved } = props;
-  const cardButtonClassName = (`card__button ${isSavedMoviesList ? 'card__button_type_remove' : isSaved ? 'card__button_saved' : 'card__button_type_save' }`);
+  const { isSaved } = props;
+  const [filmLikeStatus, setFilmLikeStatus] = useState(isSaved);
+  const filmLikeButtonClickHandler = () => {
+    setFilmLikeStatus(!filmLikeStatus);
+  }
+  const cardButtonClassName = (`card__button ${filmLikeStatus ? 'card__button_type_active' : 'card__button_type_disable' }`);
 
   return (
     <li className="card">
@@ -18,7 +23,8 @@ export default function MoviesCard(props) {
         <figcaption className="card__caption">
           <p className="card__name">О погоне за бенкси</p>
           <p className="card__duration">1ч 17м</p>
-          <button className={cardButtonClassName}/>
+          <button className={cardButtonClassName} 
+          onClick={filmLikeButtonClickHandler}/>
         </figcaption>
       </figure>
     </li>
