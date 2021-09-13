@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "../Header/Header";
 import { Route, Switch } from "react-router-dom";
-import Menu from "../Menu/Menu";
+// import Menu from "../Menu/Menu";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import Register from "../Register/Register";

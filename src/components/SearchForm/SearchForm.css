@@ -1,7 +1,7 @@
 .search-form {
     display: flex;
     max-width: 1140px;
-    margin: 0 auto;
+    margin: 0 30px;
     padding: 80px 0 40px;
     border-bottom: 1px solid #424242;
     flex-direction: column;
@@ -117,9 +117,10 @@
     background-color: #ffffff;
   }
   
-  @media screen and (max-width: 1200px) {
+  @media screen and (min-width: 1200px) {
     .search-form {
-      margin: 0 30px;
+      width: 1200px;
+      margin: 0 auto;
     }
   }
   
