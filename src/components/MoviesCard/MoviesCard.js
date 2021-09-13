@@ -15,7 +15,7 @@ export default function MoviesCard(props) {
     <li className="card">
       <figure className="card__container">
         <a className="card__link"
-           href="https://www.youtube.com/watch?v=NxJfLA_O7P8"
+           href="https://www.youtube.com/watch?v=dFUdkLpytc0"
            rel="noreferrer"
            target="_blank">
           <img className="card__image" src={image} alt="О погоне за бенкси"/>

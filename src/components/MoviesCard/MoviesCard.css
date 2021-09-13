@@ -74,8 +74,6 @@
   
   .card__button_type_active {
     background-image: url("../../images/heart-active.svg");
-    /* background-position: center;
-    background-repeat: no-repeat; */
   }
   
   @media screen and (max-width: 1019px) {
@@ -107,15 +105,3 @@
       line-height: 15px;
     }
 }
-
-@media screen and (max-width: 320px) {
-
-  .card {
-    height: 228px;
-  }
-
-  .card__duration {
-    font-size: 10px;
-    line-height: 12px;
-  }
-} 
