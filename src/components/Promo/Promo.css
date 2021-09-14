@@ -61,13 +61,13 @@
   
   @media screen and (max-width: 420px) {
     .promo__container {
-      margin: 0 10px;
       padding: 207px 10px 246px;
       background-size: contain;
     }
   
     .promo__text-container {
-      min-width: 360px;
+      min-width: 300px;
+      padding: 0;
     }
   
     .promo__title {
