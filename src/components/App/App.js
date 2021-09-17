@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Header from "../Header/Header";
 import { Route, Switch } from "react-router-dom";
-// import Menu from "../Menu/Menu";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import Register from "../Register/Register";
@@ -11,9 +10,42 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import * as MainApi from "../../utils/MainApi"
+import Preloader from "../Preloader/Preloader";
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [ isMenuOpen, setIsMenuOpen ] = React.useState(false);
+  const [ currentUser, setCurrentUser ] = React.useState({});
+  const [ isLoggedIn, setIsLoggedIn ] = React.useState(false);
+  const [ isLoading, setIsLoading ] = React.useState(false);
+  const [ errorMessage, setErrorMessage ] = React.useState('');
+
+  function handleRegister({ email, password, name }) {
+    setIsLoading(true);
+    MainApi.register({ email, password, name })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+
+  function handleLogin({ email, password }) {
+    MainApi.login({ email, password })
+      .then((res) => {
+        console.log(res);
+        setIsLoggedIn(true);
+        console.log(isLoggedIn);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   function handleMenuButtonClick() {
     setIsMenuOpen(true);
@@ -45,6 +77,7 @@ function App() {
   });
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <Switch>
         <Route exact path="/">
@@ -76,7 +109,11 @@ function App() {
           />
         </Route>
         <Route path="/signup">
-          <Register/>
+          <Register
+          isLoading={isLoading}
+          onRegister={handleRegister}
+          errorMessage={errorMessage}
+          />
         </Route>
         <Route path="/signin">
           <Login/>
@@ -85,8 +122,11 @@ function App() {
           <PageNotFound/>
         </Route>
       </Switch>
-
+      <div className={`page__preloader ${isLoading && 'page__preloader_enabled'}`}>
+          {/* <Preloader/> */}
+        </div>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
