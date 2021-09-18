@@ -6,16 +6,29 @@ import Menu from "../Menu/Menu";
 import {useFormWithValidation} from "../../utils/ReactValidation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function Profile({ isLoggedIn, onLogout, onOpenMenu, onUpdate, isLoading, errorMessage, successMessage, setSuccessMessage }) {
+export default function Profile({
+  isLoggedIn,
+  onLogout,
+  onOpenMenu,
+  onUpdate,
+  isLoading,
+  errorMessage,
+  setErrorMessage,
+  successMessage,
+  setSuccessMessage
+}) {
   const formWithValidation = useFormWithValidation();
   const { name, email } = formWithValidation.values;
   const { values, setValues, handleChange, errors, isValid, resetForm } = formWithValidation;
   const [ isEdited, setIsEdited ] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
 
+  let isChanged = (currentUser.name !== values.name) || (currentUser.email !== values.email);
+
   React.useEffect(() => {
     setValues(currentUser);
     setSuccessMessage(false);
+    setErrorMessage(false);
   }, []);
 
   function handleSubmit(evt) {
@@ -79,9 +92,9 @@ export default function Profile({ isLoggedIn, onLogout, onOpenMenu, onUpdate, is
           <div className={`profile__save-container ${isEdited && 'profile__save-container_enabled'}`}>
             <p className={`profile__message ${errorMessage &&'profile__message_type_error'}`}>{errorMessage}</p>
             <button
-              className={`profile__save-button ${!isValid && 'profile__save-button_disabled'}`}
+              className={`profile__save-button ${(!isValid || !isChanged) && 'profile__save-button_disabled'}`}
               type="submit"
-              disabled={!isValid || isLoading}>Сохранить
+              disabled={!isValid || isLoading || !isChanged}>Сохранить
             </button>
           </div>
         </form>
