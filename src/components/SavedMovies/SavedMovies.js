@@ -6,19 +6,15 @@ import Menu from "../Menu/Menu";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 
-export default function SavedMovies({ isLoggedIn, handleMenuButtonClick, isOpen, onClose }) {
+export default function SavedMovies({ isLoggedIn, onOpenMenu }) {
   return (
     <div className="saved-movies">
       <Header
         isLoggedIn={isLoggedIn}
-        onOpenMenu={handleMenuButtonClick}
+        onOpenMenu={onOpenMenu}
       />
       <SearchForm/>
       <MoviesCardList isSavedMoviesList={true}/>
-      <Menu
-        isOpen={isOpen}
-        onClose={onClose}
-      />
       <Footer/>
     </div>
   )

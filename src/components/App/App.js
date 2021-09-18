@@ -14,6 +14,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as MainApi from "../../utils/MainApi"
 import Preloader from "../Preloader/Preloader";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Menu from "../Menu/Menu";
 
 function App() {
   const [ isMenuOpen, setIsMenuOpen ] = React.useState(false);
@@ -21,7 +22,12 @@ function App() {
   const [ isLoggedIn, setIsLoggedIn ] = React.useState(false);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const [ errorMessage, setErrorMessage ] = React.useState('');
+  const [ successMessage, setSuccessMessage ] = React.useState(false);
   const history = useHistory();
+
+  React.useEffect(() => {
+    handleGetUser();
+  }, []);
 
   function handleRegister({ email, password, name }) {
     setIsLoading(true);
@@ -43,6 +49,7 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         history.push('/movies');
+        handleGetUser();
       })
       .catch((err) => {
         setErrorMessage(err.message);
@@ -52,12 +59,64 @@ function App() {
       })
   }
 
+  function handleLogout() {
+    setIsLoading(true);
+    MainApi.logout()
+      .then((res) => {
+        setIsLoggedIn(false);
+        history.push('/');
+      })
+      .catch((err) => {
+        handleUnauthorized(err);
+        setErrorMessage(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+
+  function handleUpdateUser({ name, email }) {
+    setIsLoading(true);
+    MainApi.updateUser({ name, email })
+      .then((res) => {
+        setCurrentUser({ name, email });
+        setSuccessMessage(true);
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
+        handleUnauthorized(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+
+  function handleGetUser() {
+    MainApi.getUser()
+      .then((res) => {
+        const {name, email} = res;
+        setCurrentUser({ name, email });
+        setIsLoggedIn(true);
+        console.log(currentUser.name)
+      })
+      .catch((err) => {
+        handleUnauthorized(err);
+        console.log(err.message);
+      })
+  }
+
+  function handleUnauthorized(err) {
+    if (err.message === 'Необходима авторизация') {
+      setIsLoggedIn(false);
+    }
+  }
+
   function handleMenuButtonClick() {
     setIsMenuOpen(true);
   }
 
   function closeMenu() {
-    setIsMenuOpen(false)
+    setIsMenuOpen(false);
   }
 
   function handleEscClose(evt) {
@@ -115,9 +174,14 @@ function App() {
             path="/profile"
             component={Profile}
             isLoggedIn={isLoggedIn}
+            onLogout={handleLogout}
             onOpenMenu={handleMenuButtonClick}
             isOpen={isMenuOpen}
             onClose={closeMenu}
+            onUpdate={handleUpdateUser}
+            errorMessage={errorMessage}
+            successMessage={successMessage}
+            setSuccessMessage={setSuccessMessage}
           />
         <Route path="/signup">
           <Register
@@ -140,6 +204,11 @@ function App() {
       <div className={`page__preloader ${isLoading && 'page__preloader_enabled'}`}>
           {/* <Preloader/> */}
         </div>
+
+        <Menu
+          isOpen={isMenuOpen}
+          onClose={closeMenu}
+        />
     </div>
     </CurrentUserContext.Provider>
   );
