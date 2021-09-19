@@ -1,17 +1,30 @@
 import React from 'react';
-import { useState } from 'react';
 import './MoviesCard.css';
 import { durationConverter } from '../../utils/durationConverter';
 
-export default function MoviesCard({ isSavedMoviesList, isSaved, movie }) {
+export default function MoviesCard({
+  isSavedMoviesList,
+  savedMovies, movie,
+  handleSaveMovie ,
+  handleRemoveMovie,
+}) {
   const { image, nameRU, duration, trailer } = movie;
 
+  let isSaved = false;
+  let savedId;
+  isSaved = savedMovies.some((item) => {
+    if (item.movieId === movie.movieId) {
+      savedId = item._id;
+      return true;
+    }
+    return false;
+  });
 
-  const [filmLikeStatus, setFilmLikeStatus] = useState(isSaved);
-  const filmLikeButtonClickHandler = () => {
-    setFilmLikeStatus(!filmLikeStatus);
-  }
-  const cardButtonClassName = (`card__button ${filmLikeStatus ? 'card__button_type_active' : 'card__button_type_disable' }`);
+  // const [filmLikeStatus, setFilmLikeStatus] = useState(isSaved);
+  // const filmLikeButtonClickHandler = () => {
+  //   setFilmLikeStatus(!filmLikeStatus);
+  // }
+  const cardButtonClassName = (`card__button ${isSavedMoviesList  ? 'card__button' : isSaved ? 'card__button_type_active' : 'card__button_type_disable' }`);
 
   return (
     <li className="card">
@@ -26,7 +39,9 @@ export default function MoviesCard({ isSavedMoviesList, isSaved, movie }) {
           <p className="card__name">{nameRU}</p>
           <p className="card__duration">{durationConverter(duration)}</p>
           <button className={cardButtonClassName} 
-          onClick={filmLikeButtonClickHandler}/>
+          onClick={() => {
+            isSaved ? handleRemoveMovie(movie._id ? movie._id  : savedId) : handleSaveMovie(movie)
+        }}/>
         </figcaption>
       </figure>
     </li>

@@ -2,11 +2,14 @@ import React from 'react';
 import './SavedMovies.css';
 import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import Menu from "../Menu/Menu";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 
-export default function SavedMovies({ isLoggedIn, onOpenMenu }) {
+export default function SavedMovies({ isLoggedIn, onOpenMenu, savedMovies, moviesList, handleGetSavedMovies, handleRemoveMovie }) {
+  React.useEffect(() => {
+    handleGetSavedMovies();
+  }, []);
+
   return (
     <div className="saved-movies">
       <Header
@@ -14,7 +17,12 @@ export default function SavedMovies({ isLoggedIn, onOpenMenu }) {
         onOpenMenu={onOpenMenu}
       />
       <SearchForm/>
-      <MoviesCardList isSavedMoviesList={true}/>
+      <MoviesCardList
+        isSavedMoviesList={true}
+        savedMovies={savedMovies}
+        handleRemoveMovie={handleRemoveMovie}
+        moviesList={moviesList.slice().reverse()}
+      />
       <Footer/>
     </div>
   )
