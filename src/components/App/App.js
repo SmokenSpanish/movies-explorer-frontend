@@ -23,6 +23,7 @@ import {
   UNKNOWN_IMAGE_URL,
   UNKNOWN_TRAILER_URL,
   UNAUTHORIZED,
+  SHORT_FILM_DURATION,
 } from '../../utils/constants';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
   
   const [ allMovies, setAllMovies ] = React.useState([]);
   const [ savedMovies, setSavedMovies ] = React.useState([]);
+
   const history = useHistory();
   const location = useLocation();
 
@@ -46,7 +48,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem('localSavedMovies', JSON.stringify(savedMovies));
+    setIntoLocalStorage('localSavedMovies', savedMovies);
   }, [savedMovies]);
 
   function checkLocalStorage() {
@@ -164,7 +166,7 @@ function App() {
   function handleGetSavedMovies() {
     mainApi.getSavedMovies()
       .then((movies) => {
-        setSavedMovies(movies);
+        setSavedMovies(movies.slice().reverse());
       })
       .catch((err) => {
         setGlobalErrorMessage(err);
@@ -190,6 +192,23 @@ function App() {
       .catch((err) => {
         setGlobalErrorMessage(err);
       })
+  }
+
+  function handleSearch(moviesLIst, searchInput) {
+    return moviesLIst.filter((movie) => {
+      return movie.nameRU.toLocaleLowerCase().includes(searchInput);
+    });
+  }
+
+  function filterByDuration(moviesLIst) {
+    return moviesLIst.filter((movie) => {
+      return movie.duration <= SHORT_FILM_DURATION;
+    });
+    // setFilteredMovies(filterResult);
+  }
+
+  function setIntoLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
   function handleErrors(err) {
@@ -246,24 +265,26 @@ function App() {
             component={Movies}
             isLoggedIn={isLoggedIn}
             onOpenMenu={handleMenuButtonClick}
-            isOpen={isMenuOpen}
-            onClose={closeMenu}
+            allMovies={allMovies}
             savedMovies={savedMovies}
             moviesList={allMovies}
             handleSaveMovie={handleSaveMovie}
             handleRemoveMovie={handleRemoveMovie}
+            onSearch={handleSearch}
+            onFilter={filterByDuration}
+            isLoading={isLoading}
           />
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
             onOpenMenu={handleMenuButtonClick}
-            isOpen={isMenuOpen}
-            onClose={closeMenu}
             savedMovies={savedMovies}
-            moviesList={savedMovies}
             handleGetSavedMovies={handleGetSavedMovies}
             handleRemoveMovie={handleRemoveMovie}
+            onSearch={handleSearch}
+            onFilter={filterByDuration}
+            isLoading={isLoading}
           />
           <ProtectedRoute
             path="/profile"

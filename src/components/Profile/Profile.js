@@ -81,7 +81,7 @@ export default function Profile({
               <span className="profile__input-title">E-mail</span>
               <span className={`profile__input-error ${errors.email && 'profile__input-error_visible'}`}>{errors.email}</span>
             </label>
-            <p className={`profile__message ${successMessage &&'profile__message_type_success'}`}>Данные успешно обновлены!</p>
+            <p className={`profile__message ${successMessage && 'profile__message_type_success'}`}>Данные успешно обновлены!</p>
           </div>
           <div className={`profile__edit-container ${!isEdited && 'profile__edit-container_enabled'}`}>
             <button className="profile__edit-button" type="button" onClick={handleEditClick}>Редактировать</button>

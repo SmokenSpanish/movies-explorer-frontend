@@ -6,7 +6,7 @@ export default function MoviesCardList({
   isSavedMoviesList,
   savedMovies,
   moviesList,
-  handleSaveMovie ,
+  handleSaveMovie,
   handleRemoveMovie,
 }) {
   return (
