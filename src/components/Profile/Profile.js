@@ -3,6 +3,7 @@ import './Profile.css';
 import Header from "../Header/Header";
 import {useFormWithValidation} from "../../utils/ReactValidation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import GlobalPreloader from "../GlobalPreloader/GlobalPreloader";
 
 export default function Profile({
   isLoggedIn,
@@ -41,6 +42,7 @@ export default function Profile({
   }
 
   return (
+    <>
       <div className="profile">
         <Header
           isLoggedIn={isLoggedIn}
@@ -97,6 +99,7 @@ export default function Profile({
           </div>
         </form>
       </div>
-
+      <GlobalPreloader isLoading={isLoading} />
+    </>
   )
 }

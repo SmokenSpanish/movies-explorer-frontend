@@ -45,8 +45,6 @@ function App() {
     checkLocalStorage();
   }, []);
 
-  
-
   function checkLocalStorage() {
     const localAllMovies = localStorage.getItem('localAllMovies');
     if (localAllMovies) {
@@ -84,7 +82,7 @@ function App() {
         setIsLoading(false);
       })
   }
-
+  
   function handleLogout() {
     setIsLoading(true);
     mainApi.logout()
@@ -101,12 +99,13 @@ function App() {
         setIsLoading(false);
       })
   }
-
+  
   function clearData() {
     localStorage.removeItem('lastSearch');
     setGlobalError(false);
     setErrorMessage('');
     setSuccessMessage('');
+
   }
 
   function handleUpdateUser({ name, email }) {
@@ -183,7 +182,7 @@ function App() {
   }
 
   function handleSaveMovie(movie) {
-    mainApi.saveMovie(movie)
+      mainApi.saveMovie(movie)
       .then((savedMovie) => {
         setSavedMovies([savedMovie, ...savedMovies]);
       })
@@ -216,7 +215,7 @@ function App() {
       return movie.duration <= SHORT_FILM_DURATION;
     });
   }
-
+  
   function setIntoLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -263,19 +262,19 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <div className="page">
-      <Switch>
-        <Route exact path="/">
-          <div className="page__header-container">
-          <Header
+      <div className="page">
+        <Switch>
+          <Route exact path="/">
+            <div className="page__header-container">
+              <Header
                 isLoggedIn={isLoggedIn}
                 onOpenMenu={handleMenuButtonClick}
               />
-          </div>
-          <Main/>
-          <Footer/>
-        </Route>
-        <ProtectedRoute
+            </div>
+            <Main/>
+            <Footer/>
+          </Route>
+          <ProtectedRoute
             path="/movies"
             component={Movies}
             isLoggedIn={isLoggedIn}
@@ -317,30 +316,30 @@ function App() {
             successMessage={successMessage}
             setSuccessMessage={setSuccessMessage}
           />
-        <Route path="/signup">
-          <Register
-          isLoading={isLoading}
-          onRegister={handleRegister}
-          errorMessage={errorMessage}
-          />
-        </Route>
-        <Route path="/signin">
-        <Login
+          <Route path="/signup">
+            <Register
+              isLoading={isLoading}
+              onRegister={handleRegister}
+              errorMessage={errorMessage}
+            />
+          </Route>
+          <Route path="/signin">
+            <Login
               isLoading={isLoading}
               onLogin={handleLogin}
               errorMessage={errorMessage}
             />
-        </Route>
-        <Route path="*">
-          <PageNotFound/>
-        </Route>
-      </Switch>
-      
+          </Route>
+          <Route path="*">
+            <PageNotFound/>
+          </Route>
+        </Switch>
+        
         <Menu
           isOpen={isMenuOpen}
           onClose={closeMenu}
         />
-    </div>
+      </div>
     </CurrentUserContext.Provider>
   );
 }
