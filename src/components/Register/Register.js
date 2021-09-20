@@ -91,8 +91,8 @@ export default function Register({ onRegister, isLoading, errorMessage }) {
             </div>
           </form>
         </div>
-    </div>
-    <GlobalPreloader isLoading={isLoading} />
+      </div>
+      <GlobalPreloader isLoading={isLoading} />
     </>
   );
 };

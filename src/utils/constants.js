@@ -1,5 +1,9 @@
-export const BASE_URL = 'https://api.movies.spanish.nomoredomains.rocks';
-// export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL = 'https://api.movies.spanish.nomoredomains.rocks';
+export const BASE_URL = 'http://localhost:3000';
+// export const BASE_URL =
+//     process.env.NODE_ENV === 'production'
+//         ? 'https://api.movies.spanish.nomoredomains.rocks'
+//         : 'http://localhost:3000';
 
 export const BEATFILM_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 export const BEATFILM_SOURCE_URL = 'https://api.nomoreparties.co';

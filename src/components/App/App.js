@@ -275,7 +275,7 @@ function App() {
           <Main/>
           <Footer/>
         </Route>
-        <ProtectedRoute
+        <Route
             path="/movies"
             component={Movies}
             isLoggedIn={isLoggedIn}
@@ -291,7 +291,7 @@ function App() {
             getFromLocalStorage={getFromLocalStorage}
             globalError={globalError}
           />
-          <ProtectedRoute
+          <Route
             path="/saved-movies"
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
@@ -304,7 +304,7 @@ function App() {
             isLoading={isLoading}
             globalError={globalError}
           />
-          <ProtectedRoute
+          <Route
             path="/profile"
             component={Profile}
             isLoggedIn={isLoggedIn}
