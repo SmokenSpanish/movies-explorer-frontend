@@ -13,7 +13,7 @@ import Profile from "../Profile/Profile";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as mainApi from "../../utils/MainApi";
 import * as moviesApi from "../../utils/MoviesApi";
-// import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Menu from "../Menu/Menu";
 import {
   BEATFILM_SOURCE_URL,
@@ -77,6 +77,7 @@ function App() {
       .then(() => {
         setIsLoggedIn(true);
         handleGetUser();
+        console.log(isLoggedIn);
       })
       .catch((err) => {
         setErrorMessage(err.message);
@@ -276,7 +277,7 @@ function App() {
           <Main/>
           <Footer/>
         </Route>
-        <Route
+        <ProtectedRoute
             path="/movies"
             component={Movies}
             isLoggedIn={isLoggedIn}
@@ -292,7 +293,7 @@ function App() {
             getFromLocalStorage={getFromLocalStorage}
             globalError={globalError}
           />
-          <Route
+          <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
@@ -305,7 +306,7 @@ function App() {
             isLoading={isLoading}
             globalError={globalError}
           />
-          <Route
+          <ProtectedRoute
             path="/profile"
             component={Profile}
             isLoggedIn={isLoggedIn}
