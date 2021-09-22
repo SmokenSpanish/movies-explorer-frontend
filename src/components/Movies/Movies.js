@@ -44,15 +44,18 @@ export default function Movies(
 
   React.useEffect(() => {
     checkLastSearch();
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
     searchHandler();
     filterHandler();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkboxActivated, searchInput, searchCompleted]);
 
   React.useEffect(() => {
     resize();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width]);
 
   function resize() {

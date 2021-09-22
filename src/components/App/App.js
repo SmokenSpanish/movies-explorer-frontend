@@ -13,7 +13,7 @@ import Profile from "../Profile/Profile";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as mainApi from "../../utils/MainApi";
 import * as moviesApi from "../../utils/MoviesApi";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+// import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Menu from "../Menu/Menu";
 import {
   BEATFILM_SOURCE_URL,
@@ -43,6 +43,7 @@ function App() {
     handleGetUser();
     handleGetSavedMovies();
     checkLocalStorage();
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   

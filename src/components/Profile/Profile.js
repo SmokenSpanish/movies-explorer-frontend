@@ -28,6 +28,7 @@ export default function Profile({
     setValues(currentUser);
     setSuccessMessage(false);
     setErrorMessage(false);
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSubmit(evt) {

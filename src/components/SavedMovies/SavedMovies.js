@@ -20,6 +20,7 @@ export default function SavedMovies(
 
   React.useEffect(() => {
     handleGetSavedMovies();
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [ searchInput, setSearchInput ] = React.useState([]);
@@ -30,6 +31,7 @@ export default function SavedMovies(
   React.useEffect(() => {
     searchHandler();
     filterHandler();
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkboxActivated, searchInput, handleRemoveMovie]);
 
   function searchHandler() {
