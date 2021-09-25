@@ -52,7 +52,7 @@
     opacity: 1;
     transition: opacity 0.2s linear;
     cursor: pointer;
-    color: white
+    color: white;
   }
 
   .search-form__button_disabled {

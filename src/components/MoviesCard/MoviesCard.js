@@ -24,7 +24,7 @@ export default function MoviesCard({
   // const filmLikeButtonClickHandler = () => {
   //   setFilmLikeStatus(!filmLikeStatus);
   // }
-  const cardButtonClassName = (`card__button ${isSavedMoviesList  ? 'card__button' : isSaved ? 'card__button_type_active' : 'card__button_type_disable' }`);
+  const cardButtonClassName = (`card__button ${isSavedMoviesList  ? 'card__button_type_active' : isSaved ? 'card__button_type_active' : 'card__button_type_disable' }`);
 
   return (
     <li className="card">

@@ -23,9 +23,9 @@ export default function SearchForm({ isLoading, setSearchInput, setCheckboxActiv
         onSubmit={handleSearchClick}
         noValidate
       >
-        <label className={`search-form__input-container ${errors.search && 'search-form__input-container_type_error'}`}>
+        <label className="search-form__input-container">
           <input
-            className="search-form__input"
+            className={`search-form__input ${errors.search && 'search-form__input-container_type_error'}`}
             type="text"
             name="search"
             value={values.search || ''}
@@ -33,12 +33,12 @@ export default function SearchForm({ isLoading, setSearchInput, setCheckboxActiv
             disabled={isLoading}
             placeholder="Фильм"
             required/>
+          <span className={`search__input-error ${errors.search && 'search__input-error_visible'}`}>{errors.search}</span>
           <button
             className={`search-form__button ${!isValid && 'search-form__button_disabled'}`}
             type="submit"
             disabled={!isValid || isLoading}
-          />
-          <span className={`search__input-error ${errors.search && 'search__input-error_visible'}`}>{errors.search}</span>
+          >Найти</button>
         </label>
       </form>
       <label className="search-form__checkbox-label">
