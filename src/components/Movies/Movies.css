@@ -4,7 +4,7 @@
     min-height: 100vh;  
   } 
 
-  .movies__more {
+  /* .movies__more {
     display: none;
     margin: 50px auto 80px;
     max-width: 1140px;
@@ -69,4 +69,4 @@
       width: 300px;
       margin-top: 50px;
     }
-  }
+  } */

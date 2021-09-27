@@ -113,6 +113,19 @@
   .register__input-error_visible {
     opacity: 1;
   }
+
+  .register__message {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    margin: 0 auto 20px;
+    visibility: hidden;
+  }
+  
+  .register__message_type_error {
+    visibility: visible;
+    color: #ee3465;
+  }
   
   .register__button {
     display: flex;
@@ -135,6 +148,16 @@
     opacity: 0.8;
   }
   
+  .register__button_disabled {
+    color: #c2c2c2;
+    background-color: #f8f8f8;
+    cursor: not-allowed;
+  }
+  
+  .register__button_disabled:hover {
+    opacity: 1;
+  }
+
   .register__question {
     display: flex;
     justify-content: center;
